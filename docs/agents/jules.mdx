@@ -1,0 +1,44 @@
+---
+title: "Jules"
+description: "How to use Google's Jules agent with Vibe Kanban"
+---
+
+Vibe Kanban supports Google's **Jules** coding agent via its REST API. Because Jules runs in a secure cloud environment, Vibe Kanban uses a bridge to manage sessions and apply code changes to your local repository.
+
+## Prerequisites
+
+- **Jules Access**: You must have access to [Jules](https://jules.google).
+- **GitHub Connection**: Your repository must be connected to Jules in the [Jules Dashboard](https://jules.google/settings).
+- **API Key**: You need a valid Jules API Key.
+
+## Setup
+
+1.  **Generate an API Key**:
+    - Go to [Jules Settings](https://jules.google/settings).
+    - Generate a new API Key.
+
+2.  **Configure Environment**:
+    - Set the `JULES_API_KEY` environment variable in your shell or `.env` file before running Vibe Kanban.
+
+    ```bash
+    export JULES_API_KEY="your-api-key"
+    ```
+
+    Alternatively, if you are running Vibe Kanban via `npx`, you can pass it inline:
+
+    ```bash
+    JULES_API_KEY="your-api-key" npx vibe-kanban
+    ```
+
+## How it Works
+
+Unlike local agents (like Claude Code or Gemini CLI), Jules runs tasks on Google's infrastructure. Vibe Kanban bridges this gap:
+
+1.  **Session Creation**: When you start a task, Vibe Kanban creates a session in Jules for your repository.
+2.  **Remote Execution**: Jules plans and executes the task in its cloud VM.
+3.  **Patch Application**: When Jules generates code changes, Vibe Kanban downloads the patches and applies them to your local files using `git apply`.
+
+## Limitations
+
+- **Branching**: Jules currently defaults to basing changes on the branch you are currently checked out to locally, but ensure your local branch is pushed and visible to Jules (via GitHub) for best results.
+- **Interactivity**: Advanced interactive features (like clarifying questions during execution) are currently limited in this integration.
