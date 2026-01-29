@@ -276,6 +276,30 @@
         }
       }
     },
+    "JULES": {
+      "DEFAULT": {
+        "JULES": {
+          "yolo": true
+        }
+      },
+      "GEMINI_3_PRO": {
+        "JULES": {
+          "model": "gemini-3-pro",
+          "yolo": true
+        }
+      },
+      "GEMINI_3_FLASH": {
+        "JULES": {
+          "model": "gemini-3-flash",
+          "yolo": true
+        }
+      },
+      "APPROVALS": {
+        "JULES": {
+          "yolo": false
+        }
+      }
+    },
     "DROID": {
       "DEFAULT": {
         "DROID": {
